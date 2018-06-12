@@ -1,0 +1,74 @@
+package Geekbrains.lesson_7.homework;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("Give cats food".toUpperCase());
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
+        StringBuilder name = new StringBuilder("Bars") ;
+        StringBuilder name1 = new StringBuilder("Murzik") ;
+        StringBuilder name2 = new StringBuilder("Pirajok") ;
+        StringBuilder name3 = new StringBuilder("Graf") ;
+        StringBuilder name4 = new StringBuilder("Pelmen") ;
+        Cat[] cats = {
+                new Cat(name, 5),
+                new Cat(name1, 10),
+                new Cat(name2, 15),
+                new Cat(name3, 20),
+                new Cat(name4, 25)
+        };
+        Plate plate = new Plate(50);
+        plate.plusFood(i);
+        plate.inf();
+        for (Cat cat : cats) {
+            cat.eat(plate);
+            cat.inf();
+
+        }
+        plate.inf();
+        }
+
+}
+
+package Geekbrains.lesson_7.homework;
+
+public class Plate {
+    private int food;
+    Plate(int food) {
+        this.food = food; }
+    boolean tao(int n) {
+        int f = food - n;
+        if (f < 0)
+        { return false;}
+        else{
+            food -= n;
+            return true;}   }
+    void plusFood(int food) {
+        this.food += food;
+    }
+    void inf() {
+        System.out.println("plate: " + food);
+    }}
+
+package Geekbrains.lesson_7.homework;
+
+public class Cat {
+    private StringBuilder name ;
+    private int appetit;
+    private boolean hungry;
+    Cat(StringBuilder name, int appetit) {
+        this.name =name;
+        this.appetit = appetit;
+        this.hungry = true; }
+    void inf() {
+
+        if (hungry){ System.out.println(name.append( " - ") .append(" hungry ") ); }
+        else {System.out.println(name.append( " - ") .append(" fool ") ); } }
+    void eat(Plate plate) {
+        if (hungry && plate.tao(appetit))
+            hungry = false; }
+}
+
